@@ -1,0 +1,13 @@
+bpython
+wheel
+
+django
+django-environ
+django-extensions
+pytz
+
+psycopg2
+
+redis
+
+celery

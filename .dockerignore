@@ -1,0 +1,11 @@
+.git/
+
+__pycache__/
+
+.idea/
+*.iml
+
+db.sqlite3
+
+_staticfiles/
+_mediafiles/
