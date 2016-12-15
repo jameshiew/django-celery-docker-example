@@ -24,7 +24,7 @@ after_success:
 - coverage report
 before_deploy:
 - "./manage.py collectstatic --noinput"
-deploy:
+deploy:  # set STATIC_URL to e.g. "https://s3-eu-west-1.amazonaws.com/sandbox9384/static/" if deploying
   provider: s3
   access_key_id: AKIAISWEF7JKRP5NRZEA
   secret_access_key:
