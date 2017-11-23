@@ -27,4 +27,4 @@ Run `docker run --rm --net=host webapp ./manage.py runserver 0.0.0.0:8080` and y
 Run `docker run --rm --net=host webapp celery -A config worker` to launch a Celery worker.
 
 ### Shell
-Run `docker run --rm --net=host webapp ./manage.py shell_plus` to get access to a bpython shell.
+Run `docker run --rm -it --net=host webapp ./manage.py shell_plus` to get access to a bpython shell.
