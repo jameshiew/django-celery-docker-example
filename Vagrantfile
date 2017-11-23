@@ -16,5 +16,6 @@ Vagrant.configure("2") do |config|
     usermod -aG docker ubuntu
     echo 'cd /srv' >> /home/ubuntu/.bashrc
     cd /srv && docker build . -t webapp
+    su postgres -c psql < makedb.sql
   SHELL
 end
