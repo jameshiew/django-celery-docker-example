@@ -113,3 +113,8 @@ MEDIA_ROOT = '_mediafiles/'
 # Celery
 CELERY_BROKER_URL = env.str("CELERY_BROKER_URL", 'amqp://guest:guest@{}:5672//'.format(HOST))
 CELERY_RESULT_BACKEND = env.str("CELERY_RESULT_BACKEND", 'redis://{}:6379/0'.format(HOST))
+
+# django-extensions
+SHELL_PLUS_PRE_IMPORTS = (
+    ('example.tasks', '*'),
+)
