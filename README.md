@@ -1,30 +1,34 @@
-# webapp
-Example web app composed of Docker containers - spin up both Django and Celery workers from the same image.
+# django-celery-docker-example
+A very minimal demonstration of how both Django HTTP servers and Celery workers can be run inside Docker containers based off of the same image.
 
-## Preparation
-Run `docker build . -t webapp` to build the image.
+All Django/Celery configuration is under `config/` - there is one example Celery task in `example/celery.py`.
 
-As a privileged Postgres user (e.g. `postgres`), run the following SQL in `psql` to create the database (adapted from https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04). 
+A virtual machine in the form of a Vagrantbox is used as the 'host' system for the Docker daemon and all other needed services (PostgresQL, Redis and RabbitMQ) - so this example should be able to be run on any system.
 
-```sql
-CREATE DATABASE webapp_db;
-CREATE USER webapp with password 'webapp';
-ALTER ROLE webapp SET client_encoding TO 'utf8';
-ALTER ROLE webapp SET default_transaction_isolation TO 'read committed';
-ALTER ROLE webapp SET timezone TO 'UTC';
-GRANT ALL PRIVILEGES ON DATABASE webapp_db TO webapp;
-```
+## Requirements
+
+* Vagrant
+* Virtualbox
+
+## Set up
+
+1. Do `vagrant up` in this directory to build and start up the VM - this can take a while. You can look at `Vagrantfile` to see what the set up involves - it installs needed services, builds the Docker image and initializes the database.
+2. Do `vagrant ssh`
+3. Run `docker run --rm --net=host webapp ./manage.py migrate` to run initial database migrations
+3. Run `docker run --rm --net=host webapp ./manage.py createsuperuser` to create an admin user (optional)
 
 ## Running
-The following commands assume you have Redis, RabbitMQ and Postgres running on your localhost with the default settings. If not, you can use the provided Vagrant configuration to build a Vagrantbox with all needed services. The commands should be the same. At the time of writing, host networking is broken on Docker for Mac - see https://forums.docker.com/t/should-docker-run-net-host-work/14215 .
 
 ### Django
-Run `docker run --rm --net=host webapp ./manage.py migrate` to migrate the database.
-
-Run `docker run --rm --net=host webapp ./manage.py runserver 0.0.0.0:8080` and you should be able to access the website at `localhost:8080`.
+Run `docker run --rm --net=host webapp ./manage.py runserver 0.0.0.0:8080` and you should be able to access the website at `localhost:8080` on your local machine.
 
 ### Celery
 Run `docker run --rm --net=host webapp celery -A config worker` to launch a Celery worker.
 
 ### Shell
-Run `docker run --rm -it --net=host webapp ./manage.py shell_plus` to get access to a bpython shell.
+Run `docker run --rm -it --net=host webapp ./manage.py shell_plus` to get access to a bpython shell. Note that this command may not work from within a `tmux` session.
+
+Assuming you have a Celery worker running, you can despatch the example task with `say_hello.delay()` and see the output in the terminal pane/logs for your Celery worker.
+
+## Development
+`pip-tools` is used to manage Python dependencies. Add requirements to `requirements.in` then run `pip-tools compile` or `pip-tools compile --upgrade` to update the `requirements.txt` file.
