@@ -1,39 +1,20 @@
+---
 language: python
 cache:
-- pip
+  - pip
 python:
-- '3.5'
+  - '3.6'
 services:
-- redis
-- rabbitmq
+  - redis-server
+  - rabbitmq
 env:
   global:
   - DATABASE_URL="sqlite:///:memory:"
   - DEBUG=False
 before_install:
-- pip install flake8
-- flake8 .
+  - pip install flake8
+  - flake8
 install:
-- pip install -r requirements.txt
-before_script:
-- "./manage.py migrate"
-- pip install coverage
+  - pip install -r requirements.txt
 script:
-- coverage run --branch ./manage.py test
-after_success:
-- coverage report
-before_deploy:
-- "./manage.py collectstatic --noinput"
-deploy:  # set STATIC_URL to e.g. "https://s3-eu-west-1.amazonaws.com/sandbox9384/static/" if deploying
-  provider: s3
-  access_key_id: AKIAISWEF7JKRP5NRZEA
-  secret_access_key:
-    secure: nVhUh+fH/O4JQjgkySCMS2Nbe+PMfRSe/5O6mJNqTaoeKut/vC6fQJuFzK5vvhakZuoMJmQlvAKrNlW4V30alqG3Z3Z/v52FkelPnjVT7h8OEJsbDG+BOwqE7lj/f9acc2ie3eVCbIVYnkzVYJd2P4qEsBWKwh0TkJ95Lv7kbQInNx41GbPXWvEKi2x4d/RP0kn4Eju5VmIlWcl5DgtbG+MSrZV9NYr4SuOJmKKfWQ3uPwkpoYlV7pOhzzBdv6DvaxyFyeByfTPXRsJ2pUl7F6ukj5Ly86mHimpMlALEgDJP0BhRz0r3kZ8BUj15XaDZHjRYPfxWcejIyU6GZVSScYeVGaZKucdcovlLcUHYPXmKPcZ4rAyRULFHDXsjvAY567aQRhwlEFD7pPV/eM0cT6z3uglWQhpSy2oa/2GI5gWCIXYve8QK97fByyMMd8p6z76aA/sTCARi2lRCZy8yr49IPM8I1g1N3lmoXdbJSVR3qWcQld+XzPifxhzoCE3szPc22/2ydIf73II1G8iuu01E7ut2KHzPmHb0CIXuUvTdskRw3K5tvEr9pWrnT5rZE23LHBoUDEWGNmZCEM3RQ2xHLZqjJhpVA9NQ1xevZKvbBjcYUZHTTKgCvVoUBaorhyc4tia/OxcoLy2V3d6puOi69bWyqEG7KX49T5bY65w=
-  bucket: sandbox9384
-  local-dir: _staticfiles
-  upload-dir: static
-  acl: public_read
-  on:
-    repo: jameshiew/django-celery-docker-example
-  skip_cleanup: true
-  region: eu-west-1
+  - "./manage.py migrate"
