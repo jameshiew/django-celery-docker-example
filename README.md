@@ -1,4 +1,4 @@
-# django-celery-docker-example
+# django-celery-docker-example [![Build Status](https://travis-ci.org/jameshiew/django-celery-docker-example.svg?branch=master)](https://travis-ci.org/jameshiew/django-celery-docker-example)
 A very minimal demonstration of how both Django HTTP servers and Celery workers can be run inside Docker containers based off of the same image.
 
 All Django/Celery configuration is under `config/` - there is one example Celery task in `example/celery.py`.
