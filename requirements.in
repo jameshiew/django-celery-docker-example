@@ -1,12 +1,12 @@
 bpython
 wheel
 
-django
+django>=1.11,<2.0
 django-environ
 django-extensions
 pytz
 
-psycopg2
+psycopg2-binary
 
 redis
 
