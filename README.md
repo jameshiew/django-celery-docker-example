@@ -14,8 +14,7 @@ A virtual machine in the form of a Vagrantbox is used as the 'host' system for t
 
 1. Do `vagrant up` in this directory to build and start up the VM - this can take a while. You can look at `Vagrantfile` to see what the set up involves - it installs needed services, builds the Docker image and initializes the database.
 2. Do `vagrant ssh`
-3. Run `docker run --rm --net=host webapp ./manage.py migrate` to run initial database migrations
-3. Run `docker run --rm --net=host webapp ./manage.py createsuperuser` to create an admin user (optional)
+3. Run `docker run --rm -it --net=host webapp ./manage.py createsuperuser` to create an admin user (optional)
 
 ## Running
 
