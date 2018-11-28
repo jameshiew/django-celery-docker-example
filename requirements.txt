@@ -22,7 +22,7 @@ psycopg2-binary==2.7.5
 pygments==2.2.0           # via bpython
 pytz==2018.5
 redis==2.10.6
-requests==2.19.1          # via bpython
+requests==2.20.1
 six==1.11.0               # via blessings, bpython, django-extensions
 typing==3.6.4             # via curtsies
 urllib3==1.23             # via requests

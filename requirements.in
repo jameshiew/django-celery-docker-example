@@ -2,6 +2,7 @@ bpython
 wheel
 
 django>=1.11,<2.0
+requests>=2.20.0
 django-environ
 django-extensions
 pytz
