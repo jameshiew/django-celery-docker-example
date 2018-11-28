@@ -14,7 +14,7 @@ chardet==3.0.4            # via requests
 curtsies==0.3.0           # via bpython
 django-environ==0.4.5
 django-extensions==2.1.0
-django==1.11.14
+django==1.11.16
 greenlet==0.4.14          # via bpython
 idna==2.7                 # via requests
 kombu==4.2.1              # via celery
