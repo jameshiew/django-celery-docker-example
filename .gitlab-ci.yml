@@ -1,0 +1,18 @@
+stages:
+  - lint
+  - test
+
+lint code:
+  image: python:3.6
+  stage: lint
+  script:
+    - pip install flake8
+    - flake8
+
+test migrations:
+  image: python:3.6
+  services:
+    - postgres:9.6
+  stage: test
+  script:
+    - pip install -r requirements.txt
