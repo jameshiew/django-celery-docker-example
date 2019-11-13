@@ -1,7 +1,7 @@
 bpython
 wheel
 
-django~=1.11.22
+django~=1.11.23
 requests>=2.20.0
 django-environ
 django-extensions
