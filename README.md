@@ -1,4 +1,4 @@
-# django-celery-docker-example [![Build Status](https://travis-ci.org/jameshiew/django-celery-docker-example.svg?branch=master)](https://travis-ci.org/jameshiew/django-celery-docker-example) [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+# django-celery-docker-example [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 **ARCHIVED**: this example is no longer maintained as of 2020-01-19
 
@@ -10,8 +10,8 @@ A virtual machine in the form of a Vagrantbox is used as the 'host' system for t
 
 ## Requirements
 
-* Vagrant
-* Virtualbox
+- Vagrant
+- Virtualbox
 
 ## Set up
 
@@ -22,15 +22,19 @@ A virtual machine in the form of a Vagrantbox is used as the 'host' system for t
 ## Running
 
 ### Django
+
 Run `docker run --rm --net=host webapp ./manage.py runserver 0.0.0.0:8080` and you should be able to access the website at `localhost:8080` on your local machine.
 
 ### Celery
+
 Run `docker run --rm --net=host webapp celery -A config worker` to launch a Celery worker.
 
 ### Shell
+
 Run `docker run --rm -it --net=host webapp ./manage.py shell_plus` to get access to a bpython shell. Note that this command may not work from within a `tmux` session.
 
 Assuming you have a Celery worker running, you can despatch the example task with `say_hello.delay()` and see the output in the terminal pane/logs for your Celery worker.
 
 ## Development
+
 `pip-tools` is used to manage Python dependencies. Add requirements to `requirements.in` then run `pip-tools compile` or `pip-tools compile --upgrade` to update the `requirements.txt` file.
