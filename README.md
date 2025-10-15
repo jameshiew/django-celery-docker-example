@@ -1,4 +1,4 @@
-# django-celery-docker-example [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+# django-celery-docker-example [![No Maintenance Intended](https://unmaintained.tech/badge.svg)](https://unmaintained.tech/)
 
 **ARCHIVED**: this example is no longer maintained as of 2020-01-19
 
